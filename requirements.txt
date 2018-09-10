@@ -1,0 +1,7 @@
+python=3.7.0 
+numpy==1.14.5
+opencv-python==3.3.0.10
+socketIO-client=2 0.7.5
+times=0.7
+hashlib=15.1
+pybase=64 0.4.0 
