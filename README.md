@@ -23,8 +23,9 @@ Use Img_client_Face.py for face and attributes detection.
 # How to start ?
 1. Register at https://giscle.ml 
 2. Generate your API key 
-3. Paste your API key in above codes. 
-4. Done! :)
+3. Install all the dependencies using requirements.txt  
+4. Paste your API key in above codes. 
+5. Done! :)
 
 # Live Video 
 Add your IP camera feed in the place of (0) in cam = cv2.VideoCapture(0) and optimize your client side code for your requirement. 
