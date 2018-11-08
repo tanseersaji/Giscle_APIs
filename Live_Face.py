@@ -8,10 +8,17 @@ token = 'Paste Your Token'
 
 g_url = 'http://api.giscle.ml'
 
+frame = 0
 
 def extract_data(args):
-    
     print(args)
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    for key in args['Output'][2].keys():
+        x,y,h,w = args['Output'][2][str(key)]['rect_coordinate']
+        cv2.rectangle(frame, (x,y),(x+h,y+w), (255,255,255))
+
+    cv2.imshow("frame",frame)
 
 socketio = SocketIO(g_url, 80, LoggingNamespace)
 
@@ -27,14 +34,13 @@ while True:
     ret, frame = cam.read()
     if not ret:
         continue
-    frame = cv2.resize(frame, (900, 600))
+    frame = cv2.resize(frame, (480, 360))
     encoded, buffer = cv2.imencode('.jpg', frame)
     encoded_frame = base64.b64encode(buffer)
     encoded_frame = encoded_frame.decode('utf-8')
     socketio.emit('faged', {'data': encoded_frame})
     socketio.on('response', extract_data)
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.imshow("frame",frame)
+    
     socketio.wait(0.0001)
     print(time.time() - t)
     if cv2.waitKey(1) & 0xFF == ord('q'):
