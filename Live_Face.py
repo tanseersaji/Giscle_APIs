@@ -6,7 +6,6 @@ import time
 
 token = 'Paste Your Token'
 
-
 g_url = 'http://api.giscle.ml'
 
 
@@ -24,7 +23,7 @@ frame_count = 1
 
 while True:
     global t
-    t = time.clock()
+    t = time.time()
     ret, frame = cam.read()
     if not ret:
         continue
@@ -37,7 +36,7 @@ while True:
     font = cv2.FONT_HERSHEY_SIMPLEX
     cv2.imshow("frame",frame)
     socketio.wait(0.0001)
-    print(time.clock() - t)
+    print(time.time() - t)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

@@ -32,7 +32,7 @@ if r.ok:
                     emotion = preds['Data'][2][str(key)]['Emotion']
                     #accuracy = preds['Output'][2][str(key)]['Accuracy']
                     #cv2.putText(frame,'Gender : ' + gender,(x,y-25), font, 0.5, (200,255,155), 1, cv2.LINE_AA)
-                    #cv2.putText(frame,'Age : ' + str(age),(x,y-50), font, 0.5, (200,255,155), 1, cv2.LINE_AA)
+                    cv2.putText(frame,'Age : ' + str(age),(x,y-50), font, 0.5, (200,255,155), 1, cv2.LINE_AA)
                     #cv2.putText(frame,'Emotion : ' + str(emotion),(x,y-75), font, 0.5, (200,255,155), 1, cv2.LINE_AA)
                     cv2.putText(frame,'Total_faces : {}'.format(preds['Data'][1]),(10,20), font, 0.5, (200,255,155), 1, cv2.LINE_AA)
                     cv2.rectangle(frame, (x,y),(x+h,y+w), (255,255,255))
