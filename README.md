@@ -30,7 +30,7 @@ Use Img_client_Face.py for face and attributes detection.
 # Live Video 
 Add your IP camera feed in the place of (0) in cam = cv2.VideoCapture(0) and optimize your client side code for your requirement. 
 
-# Offlien Video
+# Offline Video
 Add your Video file in the place of (0) in cam = cv2.VideoCapture(0) and optimize your client side code for your requirement.
 
 # Image 

@@ -4,15 +4,22 @@ import hashlib
 import base64
 import time
 
-token = 'Paste Your Token'
-
+token = 'Paste your token'
 
 g_url = 'http://api.giscle.ml'
 
+frame = 0
 
 def extract_data(args):
-    
     print(args)
+
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    for key in args['Output'][2].keys():
+        x,y,h,w = args['Output'][2][str(key)]['rect_coordinate']
+        cv2.rectangle(frame, (x,y),(x+h,y+w), (255,255,255))
+        cv2.imshow("frame",frame)
+
+
 
 socketio = SocketIO(g_url, 80, LoggingNamespace)
 
@@ -24,7 +31,7 @@ frame_count = 1
 
 while True:
     global t
-    t = time.clock()
+    t = time.time()
     ret, frame = cam.read()
     if not ret:
         continue
@@ -34,10 +41,9 @@ while True:
     encoded_frame = encoded_frame.decode('utf-8')
     socketio.emit('faged', {'data': encoded_frame})
     socketio.on('response', extract_data)
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.imshow("frame",frame)
     socketio.wait(0.0001)
-    print(time.clock() - t)
+    print(time.time() - t)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
